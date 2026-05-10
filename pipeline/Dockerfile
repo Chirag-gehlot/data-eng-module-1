@@ -6,10 +6,14 @@ WORKDIR /app
 
 ENV PATH="/app/.venv/bin:$PATH"
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends build-essential libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY pyproject.toml uv.lock .python-version ./
 
 RUN uv sync --locked
 
-COPY pipeline/pipeline.py .
+COPY pipeline/data_ingestion.py .
 
-ENTRYPOINT ["uv", "run", "python", "pipeline.py"]
+ENTRYPOINT ["uv", "run", "python", "data_ingestion.py"]
