@@ -9,13 +9,14 @@ terraform {
 
 provider "google" {
   # Configuration options
-  project = "gen-lang-client-0958813823"
-  region  = "asia-south1"
+  credentials = file(var.cred)
+  project = var.project
+  region  = var.region
 }
 
 resource "google_storage_bucket" "demo-bucket" {
   name          = "gen-lang-client-0958813823-terra-bucket"
-  location      = "ASIA"
+  location      = var.location
   force_destroy = true
 
   lifecycle_rule {
