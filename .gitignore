@@ -219,3 +219,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Terraform state and sensitive files for terrademo
+terrademo/.terraform/
+terrademo/terraform.tfstate
+terrademo/terraform.tfstate.backup
+terrademo/keys/
+terrademo/**/*.tfstate
+terrademo/**/*.tfvars
